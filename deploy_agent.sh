@@ -187,3 +187,21 @@ deploy_feature() {
     echo "Deployment complete. Verifying by running the app..."
     run_app
 }
+[master 21cde01] Add roster, permissions, thresholds, deploycat
+ 1 file changed, 94 insertions(+)
+
+# ---------- Menu ----------
+echo "=== Attendance Tracker Deploy Agent ==="
+echo "1) Deploy application"
+echo "2) Run application"
+echo "3) Archive logs"
+echo "4) Exit"
+read -rp "Select a feature [1-4]: " choice
+
+case "$choice" in
+    1) deploy_feature ;;
+    2) run_feature ;;
+    3) archive_feature ;;
+    4) echo "Goodbye." ;;
+    *) echo "Invalid choice." >&2; exit 1 ;;
+esac
