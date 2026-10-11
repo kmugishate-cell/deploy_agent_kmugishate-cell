@@ -73,3 +73,23 @@ run_feature() {
     ask_project_name || return 1
     run_app
 }
+
+# ---------- Feature 1: Deploy the application ----------
+# 6a: create directories and copy the unmodified template files
+create_structure() {
+    if [[ -d "$BASE_DIR/$PROJECT_DIR" ]]; then
+        local ans
+        read -rp "$PROJECT_DIR already exists. Overwrite? (y/n): " ans
+        if [[ "$ans" =~ ^[Yy]$ ]]; then
+            rm -rf "$BASE_DIR/$PROJECT_DIR"
+        else
+            echo "ERROR: aborting, $PROJECT_DIR already exists." >&2
+            exit 1
+        fi
+    fi
+
+    mkdir -p "$BASE_DIR/$PROJECT_DIR/Helpers" "$BASE_DIR/$PROJECT_DIR/reports"
+    cp "$TEMPLATES_DIR/attendance_checker.py" "$BASE_DIR/$PROJECT_DIR/"
+    cp "$TEMPLATES_DIR/config.json" "$BASE_DIR/$PROJECT_DIR/Helpers/"
+    echo "Structure created: $PROJECT_DIR"
+}
