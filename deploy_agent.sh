@@ -56,3 +56,20 @@ ask_project_name() {
 is_number() {
     [[ "$1" =~ ^[0-9]+$ ]]
 }
+
+# ---------- Feature 2: Run the application ----------
+# Run the app inside an already-deployed project
+run_app() {
+    if [[ ! -d "$BASE_DIR/$PROJECT_DIR" ]]; then
+        echo "ERROR: $PROJECT_DIR does not exist. Deploy it first." >&2
+        return 1
+    fi
+    # Subshell: the cd only affects this one command
+    ( cd "$BASE_DIR/$PROJECT_DIR" && python3 attendance_checker.py )
+}
+
+# Menu entry: ask which project, then run it
+run_feature() {
+    ask_project_name || return 1
+    run_app
+}
