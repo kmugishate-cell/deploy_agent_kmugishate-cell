@@ -187,8 +187,32 @@ deploy_feature() {
     echo "Deployment complete. Verifying by running the app..."
     run_app
 }
-[master 21cde01] Add roster, permissions, thresholds, deploycat
- 1 file changed, 94 insertions(+)
+
+
+# ---------- Feature 3: Archive the logs ----------
+archive_feature() {
+    ask_project_name || return 1
+    local proj="$BASE_DIR/$PROJECT_DIR"
+    if [[ ! -d "$proj" ]]; then
+        echo "ERROR: $PROJECT_DIR not found." >&2
+        return 1
+    fi
+
+    mkdir -p "$proj/archives/attendance" "$proj/archives/absent"
+    local ts log src dest
+    ts=$(date +%Y%m%d_%H%M%S)
+
+    for log in attendance absent; do
+        src="$proj/reports/${log}.log"
+        if [[ -f "$src" ]]; then
+            dest="$proj/archives/$log/${log}_${ts}.log"
+            mv "$src" "$dest"
+            echo "Archived ${log}.log -> $dest"
+        else
+            echo "Note: reports/${log}.log not found, nothing to archive."
+        fi
+    done
+}
 
 # ---------- Menu ----------
 echo "=== Attendance Tracker Deploy Agent ==="
