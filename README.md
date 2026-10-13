@@ -73,5 +73,6 @@ Both logs get the same timestamp in a run. I used `mv` rather than `cp`, so `rep
 
 `trap handle_interrupt
 
-Walk through video
+Walk through video:
+
 <a href="https://drive.google.com/file/d/10wgLNoWfahJXcwyFlKSGHpv5JzdGRFhX/view?usp=sharing"> <b>DEMO VIDEO </b> </a>
