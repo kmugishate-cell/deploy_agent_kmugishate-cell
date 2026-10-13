@@ -72,3 +72,6 @@ Both logs get the same timestamp in a run. I used `mv` rather than `cp`, so `rep
 ## Ctrl+C / Ctrl+Z during deployment
 
 `trap handle_interrupt
+
+Walk through video
+<a>https://drive.google.com/file/d/10wgLNoWfahJXcwyFlKSGHpv5JzdGRFhX/view?usp=sharing> <b>DEMO VIDEO </b> <a>
